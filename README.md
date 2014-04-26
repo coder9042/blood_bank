@@ -11,11 +11,12 @@ Objective of the project
 How to use
 ----------
 
+- You need a server.
 - You need a database like MySQL or any other.
 - Create a database by the name of `blood_bank`.
 - Edit `db.php`, change username and password as per your database.
 - Import the `blood_bank.sql` provided.
-- Run `index.php`.
+- Run `index.php` in your browser.
 
 Features
 --------
