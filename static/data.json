@@ -1,0 +1,58 @@
+{
+"vals": [
+{
+"id": "1",
+"name": "ANKITA PALIWAL JOSHI",
+"roll": "1201ME04",
+"email": "ankita.me12@iitp.ac.in",
+"phone": "9122793120",
+"blood_group": "O+",
+"age": "20"
+},
+{
+"id": "2",
+"name": "ANUBHAV JOSHI",
+"roll": "1201CS03",
+"email": "anubhav9042@gmail.com",
+"phone": "9122793126",
+"blood_group": "O+",
+"age": "18"
+},
+{
+"id": "3",
+"name": "AYUSH KUMAR",
+"roll": "1201CS07",
+"email": "ayush.cs12@iitp.ac.in",
+"phone": "8603251503",
+"blood_group": "O+",
+"age": "19"
+},
+{
+"id": "5",
+"name": "ANUBHAV JOSHI",
+"roll": "1201CS03",
+"email": "anubhav.cs12@iitp.ac.in",
+"phone": "8084257108",
+"blood_group": "O+",
+"age": "18"
+},
+{
+"id": "6",
+"name": "SHUBHAM KUMAR",
+"roll": "1201CS40",
+"email": "shubham.cs12@iitp.ac.in",
+"phone": "9431742458",
+"blood_group": "O+",
+"age": "20"
+},
+{
+"id": "7",
+"name": "AASHNA JOSHI",
+"roll": "2345",
+"email": "aashna@gmail.com",
+"phone": "9122793126",
+"blood_group": "O+",
+"age": "19"
+}
+]
+}

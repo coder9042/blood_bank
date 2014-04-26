@@ -1,0 +1,106 @@
+@font-face{
+	src: url('Wolf in the City Light.ttf');
+	font-family: 'wolf';
+}
+@font-face{
+	src: url('OptimusPrinceps.ttf');
+	font-family: 'optimus';
+}
+@font-face{
+	src: url('Zorus_Serif.otf');
+	font-family: 'zorus';
+}
+@font-face{
+	src: url('comic.ttf');
+	font-family: 'comic';
+}
+#header
+{
+	margin:0 auto;
+	font-family: 'wolf';
+	font-size: 200px;
+	text-align: center;
+	color: #8A0707;
+	height:200px;
+}
+#container
+{
+	margin: 0 auto;
+	width: 1250px;
+	height: 25px;
+	font-size: 20px;
+}
+#container .options{
+	width:100%;
+	text-align: center;
+}
+#container .options ul{
+	list-style: none;
+	text-align: center;
+	margin-left: 376px;
+}
+#container .options ul li{
+	float:left;
+	margin-right: 5px;
+	width:100px;
+	height:25px;
+	background: #8A0707;
+	color: white;
+	border: solid;
+	border-width: thin;
+	border-color: #8A0707;
+	border-radius: 10px;
+	text-align: center;
+	font-family: 'optimus';
+	font-size: 17px;
+	letter-spacing: 1px;
+	user-select:none;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none;
+}
+#container .options ul li:hover{
+	color: #8A0707;
+	background-color: #fff;
+}
+#container .options ul li a{
+	text-decoration: none;
+	color: white;
+}
+#container .options ul li:hover > a{
+	color: #8A0707;
+	background-color: #fff;
+}
+#container2
+{
+	margin: 0 auto;
+	width: 1250px;
+	height: 650px;
+	font-size: 20px;
+	font-family: 'optimus';
+	text-align: justify;
+}
+#container2 .options1{
+	width: 580px;
+	float: left;
+}
+#container2 .options2{
+	width: 580px;
+	float: right;
+}
+#container2 .options1 h2{
+	color: #8A0707;
+	font-family: 'zorus';
+}
+#container2 .options2 h2{
+	color: #8A0707;
+	font-family: 'zorus';
+}
+#footer{
+	height: 50px;
+	background: #8A0707;
+	color: #fff;
+	text-align: center;
+	font-family: 'optimus';
+	font-size: 17px;
+}

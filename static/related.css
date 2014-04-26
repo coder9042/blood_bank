@@ -1,0 +1,104 @@
+@font-face{
+	src: url('Wolf in the City Light.ttf');
+	font-family: 'wolf';
+}
+@font-face{
+	src: url('OptimusPrinceps.ttf');
+	font-family: 'optimus';
+}
+@font-face{
+	src: url('Zorus_Serif.otf');
+	font-family: 'zorus';
+}
+@font-face{
+	src: url('comic.ttf');
+	font-family: 'comic';
+}
+#header{
+	margin:0 auto;
+	font-family: 'wolf';
+	font-size: 200px;
+	text-align: center;
+	color: #8A0707;
+	height:200px;
+}
+#container{
+	margin: 0 auto;
+	width: 1050px;
+	height: 1000px;
+}
+#container .login{
+	margin-top: 15px;
+	width: 250px;
+	height: 350px;
+	float: left;
+	text-align: center;
+	
+}
+#container .login span{
+	color: white;
+	font-size: 40px;
+}
+#container .options{
+	margin-left: 285px;
+	width: 535px;
+	height: 380px;
+	text-align: justify;
+	font-family: 'optimus';
+	font-size: 20px;
+}
+#container .options p{
+	margin-right: 20px;
+	color:  #8A0707;
+	font-size: 25px;
+}
+#container .options dl dt{
+	color: #8A0707;
+	font-family: 'zorus';
+	font-size: 25px;
+	letter-spacing: 1.5px;
+}
+#container2{
+	margin: 0 auto;
+	width: 500px;
+	height: 30px;
+}
+#container2 ul{
+	list-style: none;
+}
+#container2 ul li{
+	float:left;
+	margin-right: 5px;
+	width:100px;
+	height:25px;
+	background: #8A0707;
+	color: white;
+	border: solid;
+	border-width: thin;
+	border-color: #8A0707;
+	border-radius: 10px;
+	text-align: center;
+	font-family: 'optimus';
+	font-size: 17px;
+	letter-spacing: 1px;
+}
+#container2 ul li:hover{
+	color: #8A0707;
+	background-color: #fff;
+}
+#container2 ul li a{
+	text-decoration: none;
+	color: white;
+}
+#container2 ul li:hover > a{
+	color: #8A0707;
+	background-color: #fff;
+}
+#footer{
+	height: 50px;
+	background: #8A0707;
+	color: #fff;
+	text-align: center;
+	font-family: 'optimus';
+	font-size: 17px;
+}
