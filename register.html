@@ -19,10 +19,12 @@
 					<li><a href="related.html">RELATED</a></li>
 				</ul>
 				<br/><br/><br/>
-				<form action="static/register.php" method="post" >
+				<form action="static/register.php" method="post" enctype="multipart/form-data" >
 				<div class="left">
+					Name:<br/>
+					<input type="text" class="inp" name="name" required="required" /><br/>
 					Username:<br/>
-					<input type="text" class="inp" name="username" required="required" /><br/>
+					<input type="text" class="inp" name="username" required="required" placeholder="This will be used for login." /><br/>
 					Email:<br/>
 					<input type="email" class="inp" name="email" required="required" /><br/>
 					Password:<br/>
@@ -31,16 +33,30 @@
 					<input type="password" class="inp" name="pwd2" required="required" /><br/>
 				</div>
 				<div class="right">
-					Name:<br/>
-					<input type="text" class="inp" name="name" required="required" /><br/>
-					Roll Number:<br/>
-					<input type="text" class="inp" name="roll" required="required" /><br/>
+					Sex:<br/>
+					<select class="inp" required="required" name="sex">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select><br/>
 					Age:<br/>
 					<input type="text" class="inp" name="age" required="required" /><br/>
 					Phone:<br/>
 					<input type="text" class="inp" name="phone" required="required" /><br/>
 					Blood Group:<br/>
-					<input type="text" class="inp" name="group" required="required" /><br/>
+					<select class="inp" required="required" name="group">
+						<option value="O+">O+</option>
+						<option value="O-">O-</option>
+						<option value="A+">A+</option>
+						<option value="A-">A-</option>
+						<option value="B+">B+</option>
+						<option value="B-">B-</option>
+						<option value="AB+">AB+</option>
+						<option value="AB">AB-</option>
+					</select><br/>
+					Last Donated Date:<br/>
+					<input type="text" class="inp" name="last" placeholder="Leave empty if never donated." /><br/>
+					Latest Blood Test Report
+					<input type="file" class="inp file" name="uploads" />
 				</div>
 				<input type="submit" class="btn" value="Register" name="register" /><br/>
 				</form>
@@ -48,7 +64,7 @@
 		</div>
 		<div id="footer">
 			Copyright &copy IIT Patna<br/>
-			Designed By: Anubhav Joshi | Ankita Paliwal | Manvee | Rishita K
+			Designed By: Anubhav Joshi | Ankita Paliwal
 		</div>
 	</body>
 </html>

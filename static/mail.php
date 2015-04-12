@@ -9,13 +9,15 @@
 		$message = "NJATH is now online. You can play the game here: \n"
 		        . "http://anwesha.info/njath";
 		$headers = 'From: ' . $sender['name'] . "\n" .'Reply-To: ' . $sender['name'];
-		if(mail($receipient['email'], $subject, $message, $headers)){
+		updateRequest($sender['id'], $receipient['id']);
+		updateLog($sender['id'], $receipient['name'], 1);
+		/*if(mail($receipient['email'], $subject, $message, $headers)){
 			updateRequest($sender['id'], $receipient['id']);
 			updateLog($sender['id'], $receipient['name'], 1);
 		}
 		else{
 			updateLog($sender['id'], $receipient['name'], 0);
-		}
+		}*/
 		header('Location: ../welcome.php');
 	}
 ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2014 at 05:46 AM
+-- Generation Time: Apr 12, 2015 at 09:12 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -31,12 +31,7 @@ CREATE TABLE IF NOT EXISTS `activity_log` (
   `activity` longtext NOT NULL,
   `timelog` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `activity_log`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
 
 -- --------------------------------------------------------
 
@@ -50,19 +45,17 @@ CREATE TABLE IF NOT EXISTS `records` (
   `user_hash` longtext NOT NULL,
   `password` longtext NOT NULL,
   `name` varchar(64) NOT NULL,
-  `roll` varchar(30) NOT NULL,
+  `sex` varchar(30) NOT NULL,
   `age` int(11) NOT NULL,
   `email` varchar(30) NOT NULL,
   `phone` bigint(40) NOT NULL,
   `blood_group` varchar(30) NOT NULL,
+  `uploads` varchar(64) NOT NULL,
+  `last_donated_date` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `records`
---
-
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
 
@@ -76,12 +69,7 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `receipient` int(11) NOT NULL,
   `response` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `requests`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 -- --------------------------------------------------------
 
@@ -95,9 +83,4 @@ CREATE TABLE IF NOT EXISTS `suggestion` (
   `subject` longtext NOT NULL,
   `suggestion` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `suggestion`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;

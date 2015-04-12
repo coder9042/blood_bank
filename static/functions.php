@@ -1,15 +1,15 @@
 <?php
-	function insert_data($usrnm, $pwd, $pwd2, $name,$roll,$age,$email,$phone,$group)
+	function insert_data($usrnm, $pwd, $pwd2, $name,$sex,$age,$email,$phone,$group,$uploads,$last)
 	{
 		include('db.php');
 		$error = '';
 		$name = strtoupper($name);
-		$roll = strtoupper($roll);
+		$sex = strtoupper($sex);
 		$group = strtoupper($group);
 		if($pwd != $pwd2){
 			$error.= "The two passwords do not match.<br/>";
 		}
-		if($age > 120)
+		if(!is_numeric($age) or $age > 120)
 		{
 			$error.= "Please enter a valid age.<br/>";
 		}
@@ -25,8 +25,11 @@
 		{
 			return $error;
 		}
-		$q = "INSERT INTO records(username, user_hash, password, name, roll, age, email, phone, blood_group) VALUES('$usrnm',SHA('$usrnm'),SHA('$pwd'),'$name', '$roll', $age, '$email', $phone, '$group')";
-		$res=mysqli_query($dbc, $q)or die('Error querying with the database.');
+		if(empty($uploads)){
+			$uploads = 'No uploads';
+		}
+		$q = "INSERT INTO records(username, user_hash, password, name, sex, age, email, phone, blood_group, uploads, last_donated_date) VALUES('$usrnm',SHA('$usrnm'),SHA('$pwd'),'$name', '$sex', $age, '$email', $phone, '$group', '$uploads', '$last')";
+		$res=mysqli_query($dbc, $q)or die('Error querying with the database. Please check if you have already registered before with this email/username.');
 		if($res)
 		{
 			//Code here
@@ -35,17 +38,14 @@
 		}
 		mysqli_close($dbc);
 	}
-	function edit_data($name,$roll,$age,$email,$phone,$group)
+	function edit_data($name,$sex,$age,$email,$phone,$group,$uploads,$last)
 	{
 		include('db.php');
 		$error = '';
 		$name = strtoupper($name);
-		$roll = strtoupper($roll);
+		$sex = strtoupper($sex);
 		$group = strtoupper($group);
-		if($pwd != $pwd2){
-			$error.= "The two passwords do not match.<br/>";
-		}
-		if($age > 120)
+		if(!is_numeric($age) or $age > 120)
 		{
 			$error.= "Please enter a valid age.<br/>";
 		}
@@ -63,14 +63,28 @@
 		}
 		$usr = getUsrByHash($_COOKIE['blood']);
 		$id = $usr['id'];
-		$q = "UPDATE records SET `name`='$name', `roll`='$roll', `age`=$age, `email`='$email', `blood_group`='$group', `phone`='$phone' WHERE `id`=$id ";
-		$res=mysqli_query($dbc, $q)or die('Error querying with the database.');
-		if($res)
-		{
-			//Code here
-			get_data();
-			return 1;
+
+		if(empty($uploads)){
+			$q = "UPDATE records SET `name`='$name', `sex`='$sex', `age`=$age, `email`='$email', `blood_group`='$group', `phone`='$phone', `last_donated_date`='$last' WHERE `id`=$id";
+			$res=mysqli_query($dbc, $q)or die('Error querying with the database.');
+			if($res)
+			{
+				//Code here
+				get_data();
+				return 1;
+			}
 		}
+		else{
+			$q = "UPDATE records SET `name`='$name', `sex`='$sex', `age`=$age, `email`='$email', `blood_group`='$group', `phone`='$phone', `last_donated_date`='$last', `uploads`='$uploads' WHERE `id`=$id";
+			$res=mysqli_query($dbc, $q)or die('Error querying with the database.');
+			if($res)
+			{
+				//Code here
+				get_data();
+				return 1;
+			}
+		}
+		
 		mysqli_close($dbc);
 	}
 	function login($usr, $pwd)
@@ -110,8 +124,8 @@
 				$str = $str.'"'.$row['id'].'"'.",\n";
 				$str1 = '"name": ';
 				$str1 = $str1.'"'.$row['name'].'"'.",\n";
-				$str2 = '"roll": ';
-				$str2 = $str2.'"'.$row['roll'].'"'.",\n";
+				$str2 = '"sex": ';
+				$str2 = $str2.'"'.$row['sex'].'"'.",\n";
 				$str3 = '"email": ';
 				$str3 = $str3.'"'.$row['email'].'"'.",\n";
 				$str4 = '"phone": ';
@@ -119,7 +133,9 @@
 				$str5 = '"blood_group": ';
 				$str5 = $str5.'"'.$row['blood_group'].'"'.",\n";
 				$str6 = '"age": ';
-				$str6 = $str6.'"'.$row['age'].'"'."\n";
+				$str6 = $str6.'"'.$row['age'].'"'.",\n";
+				$str7 = '"last_donated": ';
+				$str7 = $str7.'"'.$row['last_donated_date'].'"'."\n";
 				fwrite($file, $str);
 				fwrite($file, $str1);
 				fwrite($file, $str2);
@@ -127,6 +143,7 @@
 				fwrite($file, $str4);
 				fwrite($file, $str5);
 				fwrite($file, $str6);
+				fwrite($file, $str7);
 				$num = $num-1;
 				//fwrite($file,"},\n");
 				if ($num != 0)
@@ -157,7 +174,7 @@
 	}
 	function getUsrByName($nm){
 		include('db.php');
-		$q = "SELECT * FROM records WHERE name=$nm";
+		$q = "SELECT * FROM records WHERE name='$nm'";
 		$res = mysqli_query($dbc,$q) or die('Error querying with the database.');
 		$data = mysqli_fetch_array($res);
 		mysqli_close($dbc);
@@ -175,9 +192,10 @@
 		include('db.php');
 		$str='';
 		$str2='';
+		$my_name = getUsr($id);
 		if($val == 1){
 			$str = 'Request for blood donation sent to '.$rec_nm;
-			$str2 = 'Request for blood donation received from '.$id;
+			$str2 = 'Request for blood donation received from '.$my_name['name'];
 		}
 		if($val == 2){
 			$str = 'Details Updated!!';
@@ -189,7 +207,10 @@
 			$str = 'Suggestion sent!!';
 		}
 		if($val == 4){
-			$str = 'Blood Donation confirmation received from '.$rec_nm;
+			$str = 'Blood Donation confirmation received from '.$rec_nm.".";
+			if(strcmp($my_name['uploads'], 'No uploads') != 0){
+				$str = $str.'View my latest <a href="uploads/'.$my_name['uploads'].'" target="_blank">blood report</a>';
+			}
 		}
 		if($val == 5){
 			$str = 'Blood Donation confirmation sent to '.$rec_nm;
@@ -200,8 +221,9 @@
 		if($val == 1){
 			$id = getUsrByName($rec_nm);
 			$id = $id['id'];
+			echo $id;
 			$q2 = "INSERT INTO activity_log(user_id, activity, timelog) VALUES('$id', '$str2', '$timestamp')";
-			$res2 = mysqli_query($dbc,$q) or die('Error querying with the database.');
+			$res2 = mysqli_query($dbc,$q2) or die('Error querying with the database.');
 		}
 		mysqli_close($dbc);
 	}
